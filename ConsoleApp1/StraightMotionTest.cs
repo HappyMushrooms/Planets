@@ -8,7 +8,7 @@ namespace ConsoleApp1
 {
     class StraightMotionTest : ITest
     {
-        public double SuggestedFinalTime => throw new NotImplementedException();
+        public double SuggestedFinalTime => 10;
 
         public bool Compare(State state, double t)
         {
@@ -17,7 +17,19 @@ namespace ConsoleApp1
 
         public State Generalinitialstate()
         {
-            throw new NotImplementedException();
+            State s = new State
+            {
+                n = 2,
+                m = new List<double> { 0, 0 },
+                vx = new List<double> { 0, 1 },
+                vy = new List<double> { 0, 0 },
+                vz = new List<double> { 0, 0 },
+                x = new List<double> { 0, 0 },
+                y = new List<double> { 1, 0 },
+                z = new List<double> { 0, 0 },
+            };
+
+            return s;
         }
     }
 }

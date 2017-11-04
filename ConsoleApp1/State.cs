@@ -9,13 +9,12 @@ namespace ConsoleApp1
     class State
     {
         public int n;
-        List<double> m = new List<double>();
-        List<double> v = new List<double>();
-        List<double> x = new List<double>();
-        List<double> y = new List<double>();
-        List<double> z = new List<double>();
-        List<double> vx = new List<double>();
-        List<double> vy = new List<double>();
-        List<double> vz = new List<double>();
+        public List<double> m = new List<double>();
+        public List<double> x = new List<double>();
+        public List<double> y = new List<double>();
+        public List<double> z = new List<double>();
+        public List<double> vx = new List<double>();
+        public List<double> vy = new List<double>();
+        public List<double> vz = new List<double>();
     }
 }
