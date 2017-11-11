@@ -23,7 +23,7 @@ namespace ConsoleApp1
         private static void RunTests()
         {
             ITest test=new StraightMotionTest();
-            IMethod method = null;
+            IMethod method = new MethodEuler();
             const double dt=0.1;
             State state = test.Generalinitialstate();
             double time;
@@ -35,7 +35,7 @@ namespace ConsoleApp1
                     Console.WriteLine("Test failed");
                     break;
                 }
-                //state = method.Calculate(state, dt);
+                state = method.Calculate(state, dt);
             }
         }
     }
