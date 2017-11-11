@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceleratedMotionTest.cs" />
     <Compile Include="IMethod.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="Program.cs" />
