@@ -22,7 +22,7 @@ namespace ConsoleApp1
         double y0 = 0;
 
 
-        public double SuggestedFinalTime => throw new NotImplementedException();
+        public double SuggestedFinalTime => 10;
 
         public bool Compare(State state, double t)
         {

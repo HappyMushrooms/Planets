@@ -16,27 +16,33 @@ namespace ConsoleApp1
         }
 
         private static void DoCalculations()
-        {
+        { 
             //интерфейс для читалки и сохранялки
         }
 
         private static void RunTests()
         {
-            ITest test=new StraightMotionTest();
+            RunSingleTest(new AcceleratedMotionTest());
+            RunSingleTest(new StraightMotionTest());
+        }
+
+        private static void RunSingleTest(ITest test)
+        {
             IMethod method = null;
-            const double dt=0.1;
+            const double dt = 0.1;
             State state = test.Generalinitialstate();
             double time;
-            for (time =0; time<test.SuggestedFinalTime; time+=dt)
+            for (time = 0; time < test.SuggestedFinalTime; time += dt)
             {
-                bool resulttest =test.Compare(state, time);
-                if(resulttest==false)
+                bool resulttest = test.Compare(state, time);
+                if (resulttest == false)
                 {
                     Console.WriteLine("Test failed");
                     break;
                 }
-                //state = method.Calculate(state, dt);
+                state = method.Calculate(state, dt);
             }
         }
     }
 }
+
