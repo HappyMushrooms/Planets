@@ -28,7 +28,7 @@ namespace ConsoleApp1
 
         private static void RunSingleTest(ITest test)
         {
-            IMethod method = null;
+            IMethod method = new MethodEuler();
             const double dt = 0.1;
             State state = test.Generalinitialstate();
             double time;
