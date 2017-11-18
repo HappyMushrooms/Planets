@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class State
+    public class State
     {
         public int n;
         public List<double> m = new List<double>();
@@ -24,9 +24,9 @@ namespace ConsoleApp1
             File.WriteAllText(filename, JsonConvert.SerializeObject(this));
         }
        
-        public void LoadFromFile(string filename)
+        static public State LoadFromFile(string filename)
         {
-            State movie1 = JsonConvert.DeserializeObject<State>(File.ReadAllText(filename));
+            return JsonConvert.DeserializeObject<State>(File.ReadAllText(filename));
         }
     }
 }

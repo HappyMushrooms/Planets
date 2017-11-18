@@ -8,14 +8,13 @@ namespace ConsoleApp1
 {
     class AcceleratedMotionTest : ITest
     {
-        const double v0 = 0.1;
+        const double v0 = 10;
         const double t0 = 0;
-        const double alpha = 45;
+        const double alpha = (45*Math.PI)/180;
         double vx0 = v0 * Math.Cos(alpha);
         double vy0 = v0 * Math.Sin(alpha);
-        double vz0 = 0;
         const double MEarth = 5.972E24;
-        const double REarth = 6400000;
+        const double REarth = 6371000;
         const double G = 6.67408E-11;
         double g = G * MEarth / (REarth * REarth);
         double x0 = 0;
@@ -28,7 +27,6 @@ namespace ConsoleApp1
         {
             double vx = v0 * Math.Cos(alpha);
             double vy = v0 * Math.Sin(alpha) - g * t;
-            double vz = 0;
             double x = x0 + v0 * t * Math.Cos(alpha);
             double y = y0 + v0 * t * Math.Sin(alpha) - ((g * t * t) / 2);
 
