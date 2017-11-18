@@ -22,13 +22,19 @@ namespace ConsoleApp1
 
         private static void RunTests()
         {
-            ITest test=null;
+            //присваевоем начальное значение теста 0
+            ITest test=new StraightMotionTest ();
+
+            //присваевоем начальное значение метода 0
             IMethod method = null;
+            //шаг по времени 
             const double dt=0.1;
+            // сравнение значений какого-либо состояния с аналитическим значением
             State state = test.Generalinitialstate();
             double time;
             for (time =0; time<test.SuggestedFinalTime; time+=dt)
             {
+                //сравнение полученного результата с аналитическим значением
                 bool resulttest =test.Compare(state, time);
                 if(resulttest==false)
                 {

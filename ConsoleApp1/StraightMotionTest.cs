@@ -29,6 +29,8 @@ namespace ConsoleApp1
                 z = new List<double> { 0, 0 },
             };
 
+            s.SaveToFile(@"d:\qqq.txt");
+
             return s;
         }
     }
