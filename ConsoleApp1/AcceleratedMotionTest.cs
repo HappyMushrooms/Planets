@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class AcceleratedMotionTest : ITest
+   public class AcceleratedMotionTest : ITest
     {
         const double v0 = 10;
         const double t0 = 0;

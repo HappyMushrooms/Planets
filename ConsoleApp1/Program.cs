@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ConsoleApp1
 {
-    class Program
+    class Program 
     {
         static void Main(string[] args)
         {
@@ -17,8 +17,10 @@ namespace ConsoleApp1
 
         private static void DoCalculations()
         {
-            State state = State.LoadFromFile("d:/1.txt");
-            IView view = new TextStreamView(Console.Out);
+            //using initial state from Acceleration Motion Test
+            State state = (new AcceleratedMotionTest()).Generalinitialstate(); 
+            // State state = State.LoadFromFile("d:/1.txt");
+            IView view = new GnuPlotView(@"E:/gnuplot/bin/gnuplot.exe");
             double t = 0;
             const double tFinal = 10;
             const double dt = 0.1;
@@ -33,7 +35,7 @@ namespace ConsoleApp1
             }
         }
 
-        private static void RunTests()
+              private static void RunTests()
         {
             RunSingleTest(new StraightMotionTest());
             RunSingleTest(new AcceleratedMotionTest());
@@ -42,9 +44,9 @@ namespace ConsoleApp1
         private static void RunSingleTest(ITest test)
         {
             IMethod method = new MethodEuler();
-            const double dt = 0.001;
+            const double dt = 0.1;
             State state = test.Generalinitialstate();
-            double time;
+           double time;
             for (time = 0; time < test.SuggestedFinalTime; time += dt)
             {
                 bool resulttest = test.Compare(state, time);
