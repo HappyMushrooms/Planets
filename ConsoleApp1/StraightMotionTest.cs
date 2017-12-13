@@ -9,6 +9,7 @@ namespace ConsoleApp1
     class StraightMotionTest : ITest
     {
         const double x0 = 8;
+   
         const double v = 1; 
         public double SuggestedFinalTime => 10;
 

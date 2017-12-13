@@ -7,7 +7,7 @@ using System.IO;
 
 namespace ConsoleApp1
 {
-    class Program 
+    class Program
     {
         static void Main(string[] args)
         {
@@ -17,25 +17,30 @@ namespace ConsoleApp1
 
         private static void DoCalculations()
         {
-            //using initial state from Acceleration Motion Test
-            State state = (new AcceleratedMotionTest()).Generalinitialstate(); 
-            // State state = State.LoadFromFile("d:/1.txt");
-            IView view = new GnuPlotView(@"E:/gnuplot/bin/gnuplot.exe");
-            double t = 0;
-            const double tFinal = 10;
-            const double dt = 0.1;
-            view.Show(state, t);
-            IMethod method = new MethodEuler();
-            for (t = 0; t < tFinal; )
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            //State state = State.LoadFromFile("d:/1.txt");
+            State state = (new AcceleratedMotionTest()).Generalinitialstate();
+            // IView view = new TextStreamView(Console.Out);
+            string fileName = "d:/2.txt";
+            using (StreamWriter writer = new StreamWriter(fileName, false))
             {
-                state = method.Calculate(state, dt);
-                t += dt;
-
+                IView view = new TextStreamView(writer);
+                double t = 0;
+                const double tFinal = 10;
+                const double dt = 0.01;
                 view.Show(state, t);
+                IMethod method = new MethodEuler();
+                for (t = 0; t < tFinal;)
+                {
+                    state = method.Calculate(state, dt);
+                    t += dt;
+                    view.Show(state, t);
+                }
             }
+            
         }
 
-              private static void RunTests()
+        private static void RunTests()
         {
             RunSingleTest(new StraightMotionTest());
             RunSingleTest(new AcceleratedMotionTest());
@@ -44,9 +49,9 @@ namespace ConsoleApp1
         private static void RunSingleTest(ITest test)
         {
             IMethod method = new MethodEuler();
-            const double dt = 0.1;
+            const double dt = 0.001;
             State state = test.Generalinitialstate();
-           double time;
+            double time;
             for (time = 0; time < test.SuggestedFinalTime; time += dt)
             {
                 bool resulttest = test.Compare(state, time);
@@ -59,6 +64,7 @@ namespace ConsoleApp1
                 state = method.Calculate(state, dt);
             }
         }
+
     }
 }
 

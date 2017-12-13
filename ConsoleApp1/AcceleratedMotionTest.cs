@@ -8,9 +8,9 @@ namespace ConsoleApp1
 {
    public class AcceleratedMotionTest : ITest
     {
-        const double v0 = 10;
+        const double v0 = 100;
         const double t0 = 0;
-        const double alpha = (45*Math.PI)/180;
+        const double alpha = (30*Math.PI)/180;
         double vx0 = v0 * Math.Cos(alpha);
         double vy0 = v0 * Math.Sin(alpha);
         const double MEarth = 5.972E24;
