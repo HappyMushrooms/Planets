@@ -17,20 +17,27 @@ namespace ConsoleApp1
 
         private static void DoCalculations()
         {
-            State state = State.LoadFromFile("d:/1.txt");
-            IView view = new TextStreamView(Console.Out);
-            double t = 0;
-            const double tFinal = 10;
-            const double dt = 0.1;
-            view.Show(state, t);
-            IMethod method = new MethodEuler();
-            for (t = 0; t < tFinal; )
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            //State state = State.LoadFromFile("d:/1.txt");
+            State state = (new AcceleratedMotionTest()).Generalinitialstate();
+            // IView view = new TextStreamView(Console.Out);
+            string fileName = "d:/2.txt";
+            using (StreamWriter writer = new StreamWriter(fileName, false))
             {
-                state = method.Calculate(state, dt);
-                t += dt;
-
+                IView view = new TextStreamView(writer);
+                double t = 0;
+                const double tFinal = 10;
+                const double dt = 0.01;
                 view.Show(state, t);
+                IMethod method = new MethodEuler();
+                for (t = 0; t < tFinal;)
+                {
+                    state = method.Calculate(state, dt);
+                    t += dt;
+                    view.Show(state, t);
+                }
             }
+            
         }
 
         private static void RunTests()
@@ -57,6 +64,7 @@ namespace ConsoleApp1
                 state = method.Calculate(state, dt);
             }
         }
+
     }
 }
 

@@ -28,5 +28,40 @@ namespace ConsoleApp1
         {
             return JsonConvert.DeserializeObject<State>(File.ReadAllText(filename));
         }
+        public override string ToString()
+        {
+            string stroka = "";
+            stroka= n.ToString() + " ";
+            foreach (double M in m)
+            {
+                stroka += M.ToString() + " ";
+            }
+            foreach (double X in x)
+            {
+               stroka += X.ToString() + " ";
+            }
+            foreach (double Y in y)
+            {
+                stroka += Y.ToString() + " ";
+            }
+            foreach (double Z in z)
+            {
+                stroka += Z.ToString() + " ";
+            }
+            foreach (double VX in vx)
+            {
+                stroka += VX.ToString() + " ";
+            }
+            foreach (double VY in vy)
+            {
+                stroka += VY.ToString() + " ";
+            }
+            foreach (double VZ in vz)
+            {
+                stroka += VZ.ToString() + " ";
+            }
+            stroka = stroka + "\n";
+            return String.Format("{0}", stroka);
+        }
     }
 }
