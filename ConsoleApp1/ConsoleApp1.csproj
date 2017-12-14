@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceleratedMotionTest.cs" />
+    <Compile Include="EarthMotionTest.cs" />
     <Compile Include="GnuPlotView.cs" />
     <Compile Include="IMethod.cs" />
     <Compile Include="ITest.cs" />

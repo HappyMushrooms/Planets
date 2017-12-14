@@ -58,7 +58,7 @@ namespace ConsoleApp1
 
         }
 
-        public State Generalinitialstate()
+        public State GenerateInitialState()
         {
             //[0]-BODY, [1]-Earth
             return new State

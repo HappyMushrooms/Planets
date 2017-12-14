@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 namespace ConsoleApp1
-// IDisposable
+// IDisposable (в новый класс )
 {
     internal class GnuPlotView : IView
     {
@@ -33,8 +33,7 @@ namespace ConsoleApp1
             DateTime nw = DateTime.Now;
             long time1 = nw.Ticks / 10000000;    //time in seconds
             return time1;
-
-        }
+        }        
         long c=0;
 
         public void Show(State state, double t)
@@ -48,9 +47,9 @@ namespace ConsoleApp1
 
                 gnupStWr.WriteLine("plot sin(x)  \npause 10");
                 gnupStWr.Flush();
-               Console.WriteLine("b= {0}",b);
+                Console.WriteLine("b= {0}",b);
                 c = Time();
-                Console.WriteLine("c= {0}", c);
+               // Console.WriteLine("c= {0}", c);
             }
         }
 
