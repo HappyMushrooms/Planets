@@ -26,7 +26,7 @@ namespace ConsoleApp1
             }
         }
 
-        public State Generalinitialstate()
+        public State GenerateInitialState()
         {
             State s = new State
             {

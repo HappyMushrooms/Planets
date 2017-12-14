@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         double SuggestedFinalTime{ get; }
         //set the initial conditions
-        State Generalinitialstate();
+        State GenerateInitialState();
         // compare the given state with analytical solution
         bool Compare(State state, double t);
     }

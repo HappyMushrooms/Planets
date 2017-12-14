@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class AcceleratedMotionTest : ITest
+   public class AcceleratedMotionTest : ITest
     {
         const double v0 = 100;
         const double t0 = 0;
@@ -58,7 +58,7 @@ namespace ConsoleApp1
 
         }
 
-        public State Generalinitialstate()
+        public State GenerateInitialState()
         {
             //[0]-BODY, [1]-Earth
             return new State
