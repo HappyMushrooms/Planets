@@ -71,15 +71,64 @@ namespace ConsoleApp1
             return G * sum;
         }
 
+        private int n;
+
+        public Runge_Kutta(int n)
+        {
+            this.n = n;
+
+            kx1 = new double[n];
+            ky1 = new double[n];
+            kz1 = new double[n];
+            kx2 = new double[n];
+            ky2 = new double[n];
+            kz2 = new double[n];
+            kx3 = new double[n];
+            ky3 = new double[n];
+            kz3 = new double[n];
+            kx4 = new double[n];
+            ky4 = new double[n];
+            kz4 = new double[n];
+            kvx1 = new double[n];
+            kvy1 = new double[n];
+            kvz1 = new double[n];
+            kvx2 = new double[n];
+            kvy2 = new double[n];
+            kvz2 = new double[n];
+            kvx3 = new double[n];
+            kvy3 = new double[n];
+            kvz3 = new double[n];
+            kvx4 = new double[n];
+            kvy4 = new double[n];
+            kvz4 = new double[n];
+        }
+        double[] kx1;
+        double[] ky1;
+        double[] kz1;
+        double[] kx2;
+        double[] ky2;
+        double[] kz2;
+        double[] kx3;
+        double[] ky3;
+        double[] kz3;
+        double[] kx4;
+        double[] ky4;
+        double[] kz4;
+        double[] kvx1;
+        double[] kvy1;
+        double[] kvz1;
+        double[] kvx2;
+        double[] kvy2;
+        double[] kvz2;
+        double[] kvx3;
+        double[] kvy3;
+        double[] kvz3;
+        double[] kvx4;
+        double[] kvy4;
+        double[] kvz4;
+
         public State Calculate(State oldState, double dt)
         {
-
-            List<double> kx1 = new List<double>();
-            List<double> ky1 = new List<double>();
-            List<double> kz1 = new List<double>();
-            List<double> kvx1 = new List<double>();
-            List<double> kvy1 = new List<double>();
-            List<double> kvz1 = new List<double>();
             for (int i = 0; i < oldState.n; i++)
             {
                 kx1[i] = Fx(i, oldState) * dt;
@@ -90,17 +139,7 @@ namespace ConsoleApp1
                 kvz1[i] = Fvz(i, oldState) * dt;
             }
 
-            State st2 = new State
-            {
-                n = oldState.n
-            };
-
-            List<double> kx2 = new List<double>();
-            List<double> ky2 = new List<double>();
-            List<double> kz2 = new List<double>();
-            List<double> kvx2 = new List<double>();
-            List<double> kvy2 = new List<double>();
-            List<double> kvz2 = new List<double>();
+            State st2 = new State(oldState.n);
 
             for (int i = 0; i < oldState.n; i++)
             {
@@ -122,17 +161,7 @@ namespace ConsoleApp1
                 kvy2[i] = Fvy(i, st2) * dt;
             }
 
-            State st3 = new State
-            {
-                n = oldState.n
-            };
-
-            List<double> kx3 = new List<double>();
-            List<double> ky3 = new List<double>();
-            List<double> kz3 = new List<double>();
-            List<double> kvx3 = new List<double>();
-            List<double> kvy3 = new List<double>();
-            List<double> kvz3 = new List<double>();
+            State st3 = new State(oldState.n);
 
             for (int i = 0; i < oldState.n; i++)
             {
@@ -154,18 +183,8 @@ namespace ConsoleApp1
                 kvy3[i] = Fvy(i, st3) * dt;
             }
 
-            State st4 = new State
-            {
-                n = oldState.n
-            };
-
-            List<double> kx4 = new List<double>();
-            List<double> ky4 = new List<double>();
-            List<double> kz4 = new List<double>();
-            List<double> kvx4 = new List<double>();
-            List<double> kvy4 = new List<double>();
-            List<double> kvz4 = new List<double>();
-
+            State st4 = new State(oldState.n);
+            
             for (int i = 0; i < oldState.n; i++)
             {
                 st4.x[i] = oldState.x[i] + kx3[i];
@@ -187,10 +206,7 @@ namespace ConsoleApp1
             }
 
 
-            State newState = new State
-            {
-                n = oldState.n
-            };
+            State newState = new State(oldState.n);
 
             for (int i = 0; i < newState.n; i++)
             {

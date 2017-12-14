@@ -73,7 +73,5 @@ namespace ConsoleApp1
                 m = new List<double> { 1, MEarth },
             };
         }
-
-
     }
 }

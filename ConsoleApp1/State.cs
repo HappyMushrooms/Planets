@@ -19,6 +19,22 @@ namespace ConsoleApp1
         public List<double> vy = new List<double>();
         public List<double> vz = new List<double>();
 
+        public State()
+        {
+
+        }
+        public State(int n)
+        {
+            this.n = n;
+            m = (new double[n]).ToList();
+            x = (new double[n]).ToList();
+            y = (new double[n]).ToList();
+            z = (new double[n]).ToList();
+            vx = (new double[n]).ToList();
+            vy = (new double[n]).ToList();
+            vz = (new double[n]).ToList();
+        }
+
         public void SaveToFile(string filename)
         {
             File.WriteAllText(filename, JsonConvert.SerializeObject(this));

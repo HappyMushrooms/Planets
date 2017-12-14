@@ -27,13 +27,14 @@ namespace ConsoleApp1
                 IView view = new TextStreamView(writer);
                 double t = 0;
                 const double tFinal = 10;
-                const double dt = 0.01;
+                const double dt = 0.001;
                 view.Show(state, t);
-                IMethod method = new MethodEuler();
+                IMethod method = new Runge_Kutta(state.n);
                 for (t = 0; t < tFinal;)
                 {
                     state = method.Calculate(state, dt);
                     t += dt;
+                    //вывести раз в секунду
                     view.Show(state, t);
                 }
             }
@@ -48,9 +49,9 @@ namespace ConsoleApp1
 
         private static void RunSingleTest(ITest test)
         {
-            IMethod method = new MethodEuler();
-            const double dt = 0.001;
             State state = test.Generalinitialstate();
+            IMethod method = new Runge_Kutta(state.n);
+            const double dt = 0.001;
             double time;
             for (time = 0; time < test.SuggestedFinalTime; time += dt)
             {
