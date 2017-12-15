@@ -20,7 +20,7 @@ namespace ConsoleApp1
         double theoretical_vx;
         double theoretical_vy;
 
-        public double SuggestedFinalTime => 100;
+        public double SuggestedFinalTime => 10;
 
 
 
@@ -58,7 +58,7 @@ namespace ConsoleApp1
 
         }
 
-        public State Generalinitialstate()
+        public State GenerateInitialState()
         {
             State s = new State
             {
@@ -66,13 +66,16 @@ namespace ConsoleApp1
                 m = new List<double> { M, M_c },
                 vx = new List<double> { 0, 0 },
                 vy = new List<double> { v0x, 0 },
+               // vz = new List<double> { 0, 0 },
                 x = new List<double> { r, 0 },
                 y = new List<double> { 0, 0 },
+               // z = new List<double> { 0, 0 },
 
             };
 
             return s;
         }
+        
     }
 
 }

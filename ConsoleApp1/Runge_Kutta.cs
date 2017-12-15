@@ -31,7 +31,6 @@ namespace ConsoleApp1
                 {
                     continue;
                 }
-
                 sum = sum + (state.x[i] - state.x[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 3 / 2));
 
             }
@@ -40,6 +39,7 @@ namespace ConsoleApp1
         private double Fvy(int i, State state)
         {
             double sum = 0;
+            double sum1 = 0;
 
             for (int j = 0; j < state.n; j++)
             {
@@ -47,11 +47,11 @@ namespace ConsoleApp1
                 {
                     continue;
                 }
-
                 sum = sum + (state.y[i] - state.y[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 3 / 2));
 
             }
-            return G * sum;
+            sum1 = G * sum;
+            return sum1;
         }
 
         private double Fvz(int i, State state)

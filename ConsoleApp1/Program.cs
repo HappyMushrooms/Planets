@@ -19,17 +19,20 @@ namespace ConsoleApp1
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             //State state = State.LoadFromFile("d:/1.txt");
-            State state = (new AcceleratedMotionTest()).Generalinitialstate();
+            //State state = (new AcceleratedMotionTest()).GenerateInitialState();
+            State state = (new StraightMotionTest()).GenerateInitialState();
             // IView view = new TextStreamView(Console.Out);
             string fileName = "d:/2.txt";
+            IView view = new GnuPlotView(@"C:/gnuplot/bin/gnuplot.exe");
             using (StreamWriter writer = new StreamWriter(fileName, false))
             {
-                IView view = new TextStreamView(writer);
+                //IView view = new TextStreamView(writer);
                 double t = 0;
                 const double tFinal = 10;
-                const double dt = 0.001;
+                const double dt = 0.1;
                 view.Show(state, t);
                 IMethod method = new Runge_Kutta(state.n);
+                //IMethod method = new MethodEuler();
                 for (t = 0; t < tFinal;)
                 {
                     state = method.Calculate(state, dt);
@@ -44,14 +47,16 @@ namespace ConsoleApp1
         private static void RunTests()
         {
             RunSingleTest(new StraightMotionTest());
-            RunSingleTest(new AcceleratedMotionTest());
+            //RunSingleTest(new AcceleratedMotionTest());
+            //RunSingleTest(new EarthMotionTest());            
         }
 
         private static void RunSingleTest(ITest test)
         {
-            State state = test.Generalinitialstate();
+            State state = test.GenerateInitialState();
             IMethod method = new Runge_Kutta(state.n);
-            const double dt = 0.001;
+            //IMethod method = new MethodEuler();
+            const double dt = 0.1;
             double time;
             for (time = 0; time < test.SuggestedFinalTime; time += dt)
             {

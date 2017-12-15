@@ -8,9 +8,9 @@ namespace ConsoleApp1
 {
     class StraightMotionTest : ITest
     {
-        const double x0 = 8;
+        const double x0 = 2;
    
-        const double v = 1; 
+        const double v = 5; 
         public double SuggestedFinalTime => 10;
 
         public bool Compare(State state, double t)

@@ -25,6 +25,9 @@ namespace ConsoleApp1
             extPro.StartInfo.RedirectStandardInput = true;
             extPro.Start();
             gnupStWr = extPro.StandardInput;
+           // gnupStWr.WriteLine("set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb\"white\" behind\n");
+            gnupStWr.WriteLine("set xrange [0:60]\n");
+            gnupStWr.WriteLine("set yrange [0:2]\n");
         }
 
         // countdown from 0001 on 1 January
@@ -40,17 +43,19 @@ namespace ConsoleApp1
         {
             // State s = State.LoadFromFile("E:/1.txt");
             long b = Time();
-           // Console.WriteLine( b);
             if (b-c>=1)//relative to real time (sec)
             {
-                //gnupStWr.WriteLine("plot \"-\" u 1:2");
-
-                gnupStWr.WriteLine("plot sin(x)  \npause 10");
-                gnupStWr.Flush();
-                Console.WriteLine("b= {0}",b);
+                gnupStWr.WriteLine("plot '-' u 1:2 with points lc rgb 'black' pt 7");
+                for (int i = 0; i < state.n; i++)
+                {
+                    gnupStWr.WriteLine("{0} {1}", state.x[i], state.y[i]);
+                }
+                gnupStWr.WriteLine("e");
+                //Console.WriteLine("b= {0}",b);
                 c = Time();
-               // Console.WriteLine("c= {0}", c);
+                //Console.WriteLine("c= {0}", c);
             }
+            gnupStWr.Flush();
         }
 
       }

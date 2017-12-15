@@ -67,8 +67,8 @@ namespace ConsoleApp1
                 vx = new List<double> { vx0, 0 },
                 vy = new List<double> { vy0, 0 },
                 vz = new List<double> { 0, 0 },
-                x = new List<double> { 0, 0 },
-                y = new List<double> { 0, -REarth },
+                x = new List<double> { x0, 0 },
+                y = new List<double> { y0, -REarth },
                 z = new List<double> { 0, 0 },
                 m = new List<double> { 1, MEarth },
             };
