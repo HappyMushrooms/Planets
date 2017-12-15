@@ -20,10 +20,17 @@ namespace ConsoleApp1
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             //State state = State.LoadFromFile("d:/1.txt");
             //State state = (new AcceleratedMotionTest()).GenerateInitialState();
-            State state = (new StraightMotionTest()).GenerateInitialState();
+            State state = (new EarthMotionTest()).GenerateInitialState();
             // IView view = new TextStreamView(Console.Out);
             string fileName = "d:/2.txt";
             IView view = new GnuPlotView(@"C:/gnuplot/bin/gnuplot.exe");
+            long c = 0;
+            long Time()
+            {
+                DateTime nw = DateTime.Now;
+                long time1 = nw.Ticks / 10000000;    //time in seconds
+                return time1;
+            }
             using (StreamWriter writer = new StreamWriter(fileName, false))
             {
                 //IView view = new TextStreamView(writer);
@@ -38,7 +45,15 @@ namespace ConsoleApp1
                     state = method.Calculate(state, dt);
                     t += dt;
                     //вывести раз в секунду
-                    view.Show(state, t);
+                    long b = Time();
+                    if (b - c >= 0)//relative to real time (sec)
+                    {
+                        for (int i = 0; i < state.n; i++)
+                        {
+                            view.Show(state, t);
+                        }
+                        c = Time();
+                    }
                 }
             }
             
@@ -46,9 +61,9 @@ namespace ConsoleApp1
 
         private static void RunTests()
         {
-            RunSingleTest(new StraightMotionTest());
+            //RunSingleTest(new StraightMotionTest());
             //RunSingleTest(new AcceleratedMotionTest());
-            //RunSingleTest(new EarthMotionTest());            
+            RunSingleTest(new EarthMotionTest());            
         }
 
         private static void RunSingleTest(ITest test)
@@ -67,6 +82,7 @@ namespace ConsoleApp1
                     Console.WriteLine(time);
                     break;
                 }
+               // Console.WriteLine(time);
                 state = method.Calculate(state, dt);
             }
         }
