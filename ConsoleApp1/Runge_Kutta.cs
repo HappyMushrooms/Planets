@@ -31,7 +31,7 @@ namespace ConsoleApp1
                 {
                     continue;
                 }
-                sum = sum + (state.x[i] - state.x[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 3 / 2));
+                sum = sum - (state.x[i] - state.x[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 1.5));
 
             }
             return G * sum;
@@ -47,7 +47,7 @@ namespace ConsoleApp1
                 {
                     continue;
                 }
-                sum = sum + (state.y[i] - state.y[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 3 / 2));
+                sum = sum - (state.y[i] - state.y[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 1.5));
 
             }
             sum1 = G * sum;
@@ -65,7 +65,7 @@ namespace ConsoleApp1
                     continue;
                 }
 
-                sum = sum + (state.z[i] - state.z[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 3 / 2));
+                sum = sum - (state.z[i] - state.z[j]) * state.m[j] / (Math.Pow(Math.Pow(state.x[j] - state.x[i], 2) + Math.Pow(state.y[j] - state.y[i], 2) + Math.Pow(state.z[j] - state.z[i], 2), 1.5));
 
             }
             return G * sum;
@@ -143,6 +143,7 @@ namespace ConsoleApp1
 
             for (int i = 0; i < oldState.n; i++)
             {
+                st2.m[i] = oldState.m[i];
                 st2.x[i] = oldState.x[i] + kx1[i] / 2;
                 st2.y[i] = oldState.y[i] + ky1[i] / 2;
                 st2.z[i] = oldState.z[i] + kz1[i] / 2;
@@ -165,6 +166,7 @@ namespace ConsoleApp1
 
             for (int i = 0; i < oldState.n; i++)
             {
+                st3.m[i] = oldState.m[i];
                 st3.x[i] = oldState.x[i] + kx2[i] / 2;
                 st3.y[i] = oldState.y[i] + ky2[i] / 2;
                 st3.z[i] = oldState.z[i] + kz2[i] / 2;
@@ -187,6 +189,7 @@ namespace ConsoleApp1
             
             for (int i = 0; i < oldState.n; i++)
             {
+                st4.m[i] = oldState.m[i];
                 st4.x[i] = oldState.x[i] + kx3[i];
                 st4.y[i] = oldState.y[i] + ky3[i];
                 st4.z[i] = oldState.z[i] + kz3[i];
@@ -210,6 +213,7 @@ namespace ConsoleApp1
 
             for (int i = 0; i < newState.n; i++)
             {
+                newState.m[i] = oldState.m[i];
                 newState.x[i] = oldState.x[i] + (kx1[i] + 2 * kx2[i] + 2 * kx3[i] + kx4[i]) / 6;
                 newState.y[i] = oldState.y[i] + (ky1[i] + 2 * ky2[i] + 2 * ky3[i] + ky4[i]) / 6;
                 newState.z[i] = oldState.z[i] + (kz1[i] + 2 * kz2[i] + 2 * kz3[i] + kz4[i]) / 6;

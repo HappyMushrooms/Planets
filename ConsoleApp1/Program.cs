@@ -20,16 +20,23 @@ namespace ConsoleApp1
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             //State state = State.LoadFromFile("d:/1.txt");
             //State state = (new AcceleratedMotionTest()).GenerateInitialState();
-            State state = (new StraightMotionTest()).GenerateInitialState();
+            State state = (new AcceleratedMotionTest()).GenerateInitialState();
             // IView view = new TextStreamView(Console.Out);
             string fileName = "d:/2.txt";
             IView view = new GnuPlotView(@"C:/gnuplot/bin/gnuplot.exe");
+            long c = 0;
+            long Time()
+            {
+                DateTime nw = DateTime.Now;
+                long time1 = nw.Ticks / 10000000;    //time in seconds
+                return time1;
+            }
             using (StreamWriter writer = new StreamWriter(fileName, false))
             {
                 //IView view = new TextStreamView(writer);
                 double t = 0;
                 const double tFinal = 10;
-                const double dt = 0.1;
+                const double dt = 0.01;
                 view.Show(state, t);
                 IMethod method = new Runge_Kutta(state.n);
                 //IMethod method = new MethodEuler();
@@ -38,7 +45,15 @@ namespace ConsoleApp1
                     state = method.Calculate(state, dt);
                     t += dt;
                     //вывести раз в секунду
-                    view.Show(state, t);
+                    long b = Time();
+                    if (b - c >= 0)//relative to real time (sec)
+                    {
+                        for (int i = 0; i < state.n; i++)
+                        {
+                            view.Show(state, t);
+                        }
+                        c = Time();
+                    }
                 }
             }
             
@@ -46,8 +61,8 @@ namespace ConsoleApp1
 
         private static void RunTests()
         {
-            RunSingleTest(new StraightMotionTest());
-            //RunSingleTest(new AcceleratedMotionTest());
+            //RunSingleTest(new StraightMotionTest());
+            RunSingleTest(new AcceleratedMotionTest());
             //RunSingleTest(new EarthMotionTest());            
         }
 
@@ -56,7 +71,7 @@ namespace ConsoleApp1
             State state = test.GenerateInitialState();
             IMethod method = new Runge_Kutta(state.n);
             //IMethod method = new MethodEuler();
-            const double dt = 0.1;
+            const double dt = 0.01;
             double time;
             for (time = 0; time < test.SuggestedFinalTime; time += dt)
             {
@@ -67,6 +82,7 @@ namespace ConsoleApp1
                     Console.WriteLine(time);
                     break;
                 }
+                Console.WriteLine(time);
                 state = method.Calculate(state, dt);
             }
         }
