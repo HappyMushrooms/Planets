@@ -26,8 +26,9 @@ namespace ConsoleApp1
             extPro.Start();
             gnupStWr = extPro.StandardInput;
             // gnupStWr.WriteLine("set object 1 rectangle from screen 0,0 to screen 1,1 fillcolor rgb\"white\" behind\n");
-            gnupStWr.WriteLine("set xrange [0:1000]\n");
-            gnupStWr.WriteLine("set yrange [0:1000]\n");
+            // gnupStWr.WriteLine("set xrange [0:1000]\n");
+           gnupStWr.WriteLine("set yrange [0:10e11]\n");
+           gnupStWr.WriteLine("set xrange [0:10e11]\n");
         }
 
         // countdown from 0001 on 1 January
@@ -48,7 +49,7 @@ namespace ConsoleApp1
             gnupStWr.WriteLine("plot '-' u 1:2 with points lc rgb 'black' pt 7");
             for (int i = 0; i < 1/* state.n*/; i++)
             {
-                gnupStWr.WriteLine("{0} {1}", 0, 0);
+                gnupStWr.WriteLine("{0} {1}", 3*1.496e11, 3*1.496e11);
                 gnupStWr.WriteLine("{0} {1}", state.x[i], state.y[i]);
             }
             gnupStWr.WriteLine("e");
