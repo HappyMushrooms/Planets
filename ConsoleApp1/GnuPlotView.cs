@@ -43,7 +43,7 @@ namespace ConsoleApp1
         {
             // State s = State.LoadFromFile("E:/1.txt");
             long b = Time();
-            if (b-c>=1)//relative to real time (sec)
+            if (b-c>=0)//relative to real time (sec)
             {
                 gnupStWr.WriteLine("plot '-' u 1:2 with points lc rgb 'black' pt 7");
                 for (int i = 0; i < state.n; i++)

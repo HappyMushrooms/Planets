@@ -18,12 +18,12 @@ namespace ConsoleApp1
         private static void DoCalculations()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            //State state = State.LoadFromFile("d:/1.txt");
-            //State state = (new AcceleratedMotionTest()).GenerateInitialState();
-            State state = (new StraightMotionTest()).GenerateInitialState();
+           // State state = State.LoadFromFile("d:/1.txt");
+            State state = (new AcceleratedMotionTest()).GenerateInitialState();
+            //State state = (new StraightMotionTest()).GenerateInitialState();
             // IView view = new TextStreamView(Console.Out);
             string fileName = "d:/2.txt";
-            IView view = new GnuPlotView(@"C:/gnuplot/bin/gnuplot.exe");
+            IView view = new GnuPlotView(@"D:/gnuplot/bin/gnuplot.exe");
             using (StreamWriter writer = new StreamWriter(fileName, false))
             {
                 //IView view = new TextStreamView(writer);
@@ -46,8 +46,8 @@ namespace ConsoleApp1
 
         private static void RunTests()
         {
-            RunSingleTest(new StraightMotionTest());
-            //RunSingleTest(new AcceleratedMotionTest());
+            //RunSingleTest(new StraightMotionTest());
+            RunSingleTest(new AcceleratedMotionTest());
             //RunSingleTest(new EarthMotionTest());            
         }
 

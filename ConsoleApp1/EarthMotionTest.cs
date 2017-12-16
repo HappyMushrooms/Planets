@@ -7,7 +7,7 @@ namespace ConsoleApp1
 {
     public class EarthMotionTest : ITest
     {
-        const double G = 6.6742e-11; //Гравитационная постоянная
+        const  double G = 6.6742e-11; //Гравитационная постоянная
         const double r = 1.496e11; //Растояние от земли до солнца
         const double M_c = 1.989e30; //Масса Солнца
         const double M = 5.972E24;

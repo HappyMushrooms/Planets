@@ -10,13 +10,13 @@ namespace ConsoleApp1
     {
         const double v0 = 100;
         const double t0 = 0;
-        const double alpha = (30*Math.PI)/180;
-        double vx0 = v0 * Math.Cos(alpha);
-        double vy0 = v0 * Math.Sin(alpha);
         const double MEarth = 5.972E24;
         const double REarth = 6371000;
         const double G = 6.67408E-11;
         double g = G * MEarth / (REarth * REarth);
+        const double alpha = (30*Math.PI)/180;
+        double vx0 = v0 * Math.Cos(alpha);
+        double vy0 = v0 * Math.Sin(alpha);
         double x0 = 0;
         double y0 = 0;
 
